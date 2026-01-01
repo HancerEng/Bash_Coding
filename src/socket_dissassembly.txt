@@ -1,0 +1,95 @@
+Disassembly of section .text:
+
+00000000 <_start>:
+   0:   31 c0                   xor    %eax,%eax
+   2:   31 db                   xor    %ebx,%ebx
+   4:   31 d2                   xor    %edx,%edx
+   6:   b0 66                   mov    $0x66,%al
+   8:   b3 01                   mov    $0x1,%bl
+   a:   52                      push   %edx
+   b:   6a 01                   push   $0x1
+   d:   6a 02                   push   $0x2
+   f:   89 e1                   mov    %esp,%ecx
+  11:   cd 80                   int    $0x80
+  13:   89 c6                   mov    %eax,%esi
+  15:   31 c0                   xor    %eax,%eax
+  17:   31 db                   xor    %ebx,%ebx
+  19:   b0 66                   mov    $0x66,%al
+  1b:   b3 02                   mov    $0x2,%bl
+  1d:   52                      push   %edx
+  1e:   52                      push   %edx
+  1f:   68 c0 a8 01 6f          push   $0x6f01a8c0
+  24:   66 68 11 5c             pushw  $0x5c11
+  28:   66 6a 02                pushw  $0x2
+  2b:   89 e1                   mov    %esp,%ecx
+  2d:   6a 10                   push   $0x10
+  2f:   51                      push   %ecx
+  30:   56                      push   %esi
+  31:   89 e1                   mov    %esp,%ecx
+  33:   cd 80                   int    $0x80
+  35:   31 c0                   xor    %eax,%eax
+  37:   31 db                   xor    %ebx,%ebx
+  39:   31 c9                   xor    %ecx,%ecx
+  3b:   b0 66                   mov    $0x66,%al
+  3d:   b3 04                   mov    $0x4,%bl
+  3f:   6a 02                   push   $0x2
+  41:   56                      push   %esi
+  42:   89 e1                   mov    %esp,%ecx
+  44:   cd 80                   int    $0x80
+
+00000046 <accept_loop>:
+  46:   31 c0                   xor    %eax,%eax
+  48:   31 db                   xor    %ebx,%ebx
+  4a:   31 c9                   xor    %ecx,%ecx
+  4c:   b0 66                   mov    $0x66,%al
+  4e:   b3 05                   mov    $0x5,%bl
+  50:   52                      push   %edx
+  51:   52                      push   %edx
+  52:   56                      push   %esi
+  53:   89 e1                   mov    %esp,%ecx
+  55:   cd 80                   int    $0x80
+  57:   89 c7                   mov    %eax,%edi
+  59:   31 c0                   xor    %eax,%eax
+  5b:   31 db                   xor    %ebx,%ebx
+  5d:   31 c9                   xor    %ecx,%ecx
+  5f:   31 d2                   xor    %edx,%edx
+  61:   b0 05                   mov    $0x5,%al
+  63:   bb 00 00 00 00          mov    $0x0,%ebx
+  68:   b9 41 00 00 00          mov    $0x41,%ecx
+  6d:   ba a4 01 00 00          mov    $0x1a4,%edx
+  72:   cd 80                   int    $0x80
+  74:   89 c5                   mov    %eax,%ebp
+
+00000076 <transfer_loop>:
+  76:   31 c0                   xor    %eax,%eax
+  78:   31 db                   xor    %ebx,%ebx
+  7a:   31 c9                   xor    %ecx,%ecx
+  7c:   31 d2                   xor    %edx,%edx
+  7e:   b0 03                   mov    $0x3,%al
+  80:   89 fb                   mov    %edi,%ebx
+  82:   b9 00 00 00 00          mov    $0x0,%ecx
+  87:   ba 00 04 00 00          mov    $0x400,%edx
+  8c:   cd 80                   int    $0x80
+  8e:   83 f8 00                cmp    $0x0,%eax
+  91:   7e 12                   jle    a5 <transfer_finish>
+  93:   b0 04                   mov    $0x4,%al
+  95:   89 eb                   mov    %ebp,%ebx
+  97:   b9 00 00 00 00          mov    $0x0,%ecx
+  9c:   ba 00 04 00 00          mov    $0x400,%edx
+  a1:   cd 80                   int    $0x80
+  a3:   eb d1                   jmp    76 <transfer_loop>
+
+000000a5 <transfer_finish>:
+  a5:   31 c0                   xor    %eax,%eax
+  a7:   b0 06                   mov    $0x6,%al
+  a9:   89 eb                   mov    %ebp,%ebx
+  ab:   cd 80                   int    $0x80
+  ad:   b8 06 00 00 00          mov    $0x6,%eax
+  b2:   89 fb                   mov    %edi,%ebx
+  b4:   cd 80                   int    $0x80
+  b6:   b8 06 00 00 00          mov    $0x6,%eax
+  bb:   89 f3                   mov    %esi,%ebx
+  bd:   cd 80                   int    $0x80
+  bf:   b8 01 00 00 00          mov    $0x1,%eax
+  c4:   31 db                   xor    %ebx,%ebx
+  c6:   cd 80                   int    $0x8
