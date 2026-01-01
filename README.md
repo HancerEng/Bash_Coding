@@ -10,6 +10,6 @@ Log Dump:
 
 objdump -d socket.o
 
-Creating exe:
+Creating bash command:
 
 ld -m elf_i386 socket.o -o socket
