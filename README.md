@@ -1,15 +1,56 @@
-Bash commands written in assembly for x86 architecture
+# 🛠️ Bash-Coding (x86 Assembly)
 
-Commands:
+This repository contains various Linux CLI tools and "Bash-like" commands written from scratch using **x86 Assembly (NASM)**. The goal is to understand system calls and low-level programming on the x86 architecture.
 
-Creating .o file:
+## � Project Structure
 
-nasm -f elf32 socket.asm -o socket.asm
+### `local_network_manager/`
+Manages local network operations and socket communication:
+- `transfer` - Compiled executable
+- `transfer.asm` - Assembly source code
+- `transfer_disassembly.txt` - Disassembly output
 
-Log Dump:
+### `open_shell/`
+Implements a basic shell interface:
+- `shell` - Compiled executable
+- `shell.asm` - Assembly source code
+- `shell_disassembly.txt` - Disassembly output
 
-objdump -d socket.o
+## 🚀 Getting Started
 
-Creating bash command:
+### Prerequisites
+To assemble and link these programs, you need `nasm` and `binutils` installed on your Linux system:
 
-ld -m elf_i386 socket.o -o socket
+```bash
+sudo apt update
+sudo apt install nasm binutils
+```
+
+## 🛠️ Build & Development
+
+Follow these steps to compile the source code into a runnable executable.
+
+### 1. Assembling
+Convert the .asm source file into an ELF object file:
+
+```bash
+nasm -f elf32 transfer.asm -o transfer.o
+```
+
+### 2. Linking
+Link the object file to create the final Linux executable:
+
+```bash
+ld -m elf_i386 transfer.o -o transfer
+```
+
+### 3. Inspection (Optional)
+To view the assembly instructions and "Log Dump" of the compiled object file:
+
+```bash
+objdump -d transfer.o
+```
+
+## 📝 License
+
+This project is open source and available for educational purposes.
