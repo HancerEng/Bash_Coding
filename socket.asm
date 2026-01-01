@@ -124,28 +124,17 @@ transfer_finish:
 	mov ebx , ebp
 	int 0x80
 
+	; Close sockets (Cleaning)
+    mov eax, 6          ; sys_close
+	mov ebx, edi        ; İstemci soketi
+	int 0x80
 
-
-
-
-
-
-
-
-
-
-
-	; 2. Soketleri Kapat (Temizlik)
-    	mov eax, 6          ; sys_close
-    	mov ebx, edi        ; İstemci soketi
-    	int 0x80
-
-    	mov eax, 6          ; sys_close
-    	mov ebx, esi        ; Dinleyen ana soket
+	mov eax, 6          ; sys_close
+	mov ebx, esi        ; Dinleyen ana soket
    	int 0x80
 
-    	; 3. Çıkış Yap
-    	mov eax, 1          ; sys_exit
-    	xor ebx, ebx        ; return 0
-    	int 0x80
+	; Exit Node
+	mov eax, 1          ; sys_exit
+	xor ebx, ebx        ; return 0
+	int 0x80
 
