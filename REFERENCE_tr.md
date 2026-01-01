@@ -62,7 +62,7 @@
 
 ## x86 Linux Syscall Tablosu
 
-| No. | Adı | Hex | 1. Arg | 2. Arg | 3. Arg | 4. Arg | 5. Arg | 6. Arg |
+| No. | Adı | Hex | eax | ebx | ecx | edx | esi | edi |
 |-----|-----|-----|--------|--------|--------|--------|--------|--------|
 | 1 | exit | 0x01 | int error_code | - | - | - | - | - |
 | 2 | fork | 0x02 | - | - | - | - | - | - |

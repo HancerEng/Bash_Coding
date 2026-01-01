@@ -62,7 +62,7 @@
 
 ## x86 Linux Syscall Table
 
-| No. | Name | Hex | 1st Arg | 2nd Arg | 3rd Arg | 4th Arg | 5th Arg | 6th Arg |
+| No. | Name | Hex | eax | ebx | ecx | edx | esi | edi |
 |-----|------|-----|---------|---------|---------|---------|---------|---------|
 | 1 | exit | 0x01 | int error_code | - | - | - | - | - |
 | 2 | fork | 0x02 | - | - | - | - | - | - |
