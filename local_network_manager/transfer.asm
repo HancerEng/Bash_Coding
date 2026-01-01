@@ -22,9 +22,9 @@ _start:
 	mov ecx , esp
 	int 0x80
 
-	mov esi , eax ; fd backup
+	mov esi , eax                  ; Save socket file descriptor for later use
 
-	;Bind
+	; Bind the socket to the specified IP and port
 
 	xor eax , eax
 	xor ebx , ebx
@@ -34,8 +34,8 @@ _start:
 
 	push edx
 	push edx
-	push 0x6f01a8c0 ;IP 192.168.1.111 (Local Port)
-	push word 0x5c11 ;PORT 4444
+	push 0x6f01a8c0                ; IP address: 192.168.1.111
+	push word 0x5c11               ; Port number: 4444
 	push word 2
 	mov ecx , esp ;ecx in sockaddr *
 
@@ -45,7 +45,7 @@ _start:
 	mov ecx , esp
 	int 0x80
 
-	;Listen
+	; Listen for incoming connections
 
 	xor eax , eax
 	xor ebx , ebx
@@ -59,7 +59,7 @@ _start:
 	mov ecx , esp
 	int 0x80
 
-	;Accept Loop
+	; Accept incoming client connections in a loop
 
 accept_loop:
 
@@ -76,7 +76,7 @@ accept_loop:
 	mov ecx , esp
 	int 0x80
 
-	mov edi, eax     ;(win fd *)
+	mov edi, eax                   ; Save client socket file descriptor
 
 	xor eax , eax
 	xor ebx , ebx
@@ -89,7 +89,7 @@ accept_loop:
 	mov edx , 420
 	int 0x80
 
-	mov ebp , eax 	; Received dir fd *
+	mov ebp , eax                  ; Save file descriptor for writing received data
 
 transfer_loop:
 
@@ -104,7 +104,7 @@ transfer_loop:
 	mov edx , 1024
 	int 0x80
 
-	cmp eax, 0  	; EAX keeps number of bytes read
+	cmp eax, 0                     ; Check if bytes were read (0 means connection closed)
 	jle transfer_finish
 
 	mov al , 4
@@ -115,7 +115,7 @@ transfer_loop:
 
 	jmp transfer_loop
 
-	;Transfer is finished
+	; Transfer is finished - close all file descriptors and exit
 
 transfer_finish:
 
@@ -124,17 +124,18 @@ transfer_finish:
 	mov ebx , ebp
 	int 0x80
 
-	; Close sockets (Cleaning)
-    mov eax, 6          ; sys_close
-	mov ebx, edi        ; İstemci soketi
+	; Close client socket (edi)
+	mov eax, 6                     ; sys_close syscall
+	mov ebx, edi                   ; Client socket fd
 	int 0x80
 
-	mov eax, 6          ; sys_close
-	mov ebx, esi        ; Dinleyen ana soket
-   	int 0x80
+	; Close server socket (esi)
+	mov eax, 6                     ; sys_close syscall
+	mov ebx, esi                   ; Server socket fd
+	int 0x80
 
-	; Exit Node
-	mov eax, 1          ; sys_exit
-	xor ebx, ebx        ; return 0
+	; Exit the program
+	mov eax, 1                     ; sys_exit syscall
+	xor ebx, ebx                   ; Return code: 0
 	int 0x80
 
