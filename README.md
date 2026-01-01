@@ -54,3 +54,15 @@ objdump -d example.o
 ## 📝 License
 
 This project is open source and available for educational purposes.
+
+## 📚 Resources & Reference
+
+For detailed reference guides and syscall tables:
+- **English:** [REFERENCE.md](REFERENCE.md)
+- **Türkçe:** [REFERENCE_tr.md](REFERENCE_tr.md)
+
+Contents include:
+- 32-bit register categories (eax, ebx, ecx, edx, esi, edi, ebp, esp)
+- x86 Linux syscall table
+- Socketcall sub-numbers
+- Syscall usage examples
