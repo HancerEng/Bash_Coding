@@ -2,11 +2,14 @@ Bash commands written in assembly for x86 architecture
 
 Commands:
 
-Creating .o file
-  nasm -f elf32 socket.asm -o socket.asm
+Creating .o file:
 
-Log Dump
-  objdump -d socket.o
+nasm -f elf32 socket.asm -o socket.asm
 
-Creating exe
-  ld -m elf_i386 socket.o -o socket
+Log Dump:
+
+objdump -d socket.o
+
+Creating exe:
+
+ld -m elf_i386 socket.o -o socket
